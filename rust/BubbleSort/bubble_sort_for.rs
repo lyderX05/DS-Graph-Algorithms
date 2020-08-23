@@ -1,4 +1,5 @@
 use std::io::{self};
+use std::process;
 fn main() {
     println!("Bubble Sort Algorithm");
     let mut buffer = String::new();
@@ -8,6 +9,9 @@ fn main() {
     println!("Array length {:?}", array_len);
     println!("Unsorted Array {:?}", array);
     println!("===========================");
+    if array_len > 25 {
+        panic!("Array Size should be less than 25 as larger array increases time complexity of execution");
+    }
     for _ in 0..array_len {
         let mut swapped = false;
         for col in 0..(array_len - 1) {

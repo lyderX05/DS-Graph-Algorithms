@@ -1,6 +1,13 @@
+use std::io::{self};
 fn main() {
-    let mut array = [14,33,27,10,35,19,42,44];
+    println!("Insertion Sort Algorithm");
+    let mut buffer = String::new();
+    io::stdin().read_line(&mut buffer).unwrap();
+    let mut array:Vec<i32> = buffer.trim().split(',').map(|s| s.parse::<i32>().unwrap()).collect();
     let array_len = array.len();
+    if array_len > 25 {
+        panic!("Array Size should be less than 25 as larger array increases time complexity of execution");
+    }
     for elem in 1..array_len {
         let insertValue = array[elem];
         let mut holepoint = elem;
