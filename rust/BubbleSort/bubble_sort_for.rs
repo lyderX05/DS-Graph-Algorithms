@@ -1,5 +1,5 @@
 use std::io::{self};
-use std::process;
+
 fn main() {
     println!("Bubble Sort Algorithm");
     let mut buffer = String::new();
