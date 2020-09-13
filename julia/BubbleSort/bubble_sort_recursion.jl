@@ -1,16 +1,51 @@
-function bubbleSort(array, array_len, initial, swapped)
-    if array_len > initial
-        if array[initial] > array[initial+1]
-            swapped[initial] = 0
-            val = array[initial + 1]
-            array[initial + 1] = array[initial]
-            array[initial] = val
-            println("New Array: ", array)
-            return bubbleSort(array, array_len, initial + 1, swapped)
-        end
+#=
+bubble_sort_recursion:
+- Julia version: 
+- Author: lyderX05
+=#
+count = 1
+function swap(array, swap_index, array_length)
+    temp = array[swap_index]
+    if swap_index + 1 > array_length
+        array[swap_index] = array[array_length]
+        array[array_length] = temp
+    else
+        array[swap_index] = array[swap_index + 1]
+        array[swap_index + 1] = temp
     end
-    swapped[initial] = 1
-    return array
+
+
+end
+
+function iteration(array, curIter, nextIter, array_length)
+    global count
+    if nextIter == nothing || curIter == nothing
+        return count + 1
+    end
+    #println("Cur: $(curIter[1])  | Next: $(nextIter[1])")
+    if curIter[1] > nextIter[1]
+        swap(array, curIter[2] - 1, array_length)
+        println("New Array: $array")
+        curIter = iterate(array, curIter[2])
+        nextIter = iterate(array, nextIter[2])
+    else
+        curIter = iterate(array, curIter[2])
+        nextIter = iterate(array, nextIter[2])
+    end
+    return iteration(array, curIter, nextIter, array_length)
+end
+
+function bubble_sort(array, array_length)
+    global count
+    if count > array_length
+        return array_length
+    else
+        curIter = iterate(array)
+        nextIter = iterate(array, 2)
+        println("Iteration: $count")
+        count = iteration(array, curIter, nextIter, array_length)
+        return bubble_sort(array, array_length)
+    end
 end
 
 function main()
@@ -20,25 +55,8 @@ function main()
     array = [parse(Int, each) for each in split(input_string, ",")]
     array_len = length(array)
     println("Array length: ", array_len)
-    if array_len > 25
-        println("Not a best Method to have large array sorting")
-        exit(2)
-    end
-    if array_len > 1
-        initial = 1
-        swapped = zeros(Int32, array_len)
-        while true
-            array = bubbleSort(array, array_len, initial, swapped)
-            if initial == array_len - 1
-                initial = 1
-            else
-                initial += 1
-            end
-            if !(0 in swapped)
-                break
-            end
-        end 
-    end
-    println("Sorted Array: ", array)
+    bubble_sort(array, array_len)
+    println("Array: $array")
 end
+
 main()
