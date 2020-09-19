@@ -1,3 +1,9 @@
+/*
+# Bubble Sort For Loop
+# @author: Shubham Heda
+# Email: hedashubham5@gmail.com
+ */
+
 use std::io::{self};
 
 fn main() {
@@ -12,20 +18,24 @@ fn main() {
     if array_len > 25 {
         panic!("Array Size should be less than 25 as larger array increases time complexity of execution");
     }
-    for _ in 0..array_len {
-        let mut swapped = false;
-        for col in 0..(array_len - 1) {
-            if array[col] > array[col+1] {
-                let val = array[col + 1];
-                array[col + 1] = array[col];
-                array[col] = val;
-                swapped = true;
-                println!("New Array {:?}", array);
+    if array_len >  1 {
+        for _ in 0..array_len {
+            let mut swapped = false;
+            for col in 0..(array_len - 1) {
+                if array[col] > array[col+1] {
+                    let val = array[col + 1];
+                    array[col + 1] = array[col];
+                    array[col] = val;
+                    swapped = true;
+                    println!("New Array {:?}", array);
+                }
             }
-        } 
-        if !swapped {
-            break;
+            if !swapped {
+                break;
+            }
         }
+    } else {
+        println!("Array Contains only one Value: {:?}", array);
     }
     println!("===========================");
     println!("Sorted Array: {:?}", array);

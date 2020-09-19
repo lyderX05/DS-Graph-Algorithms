@@ -1,3 +1,7 @@
+# Bubble Sort For Loop
+# @author: Shubham Heda
+# Email: hedashubham5@gmail.com
+
 function main()
     println("**NOTE**: Elements should be less then 25 as alogrithm work best on that only")
     println("Enter Bubble Sort elements sepreated by (',') Comma: ")
@@ -20,7 +24,10 @@ function main()
                 break
             end
         end
+    else
+        println("Array Conatins only one Value: ", array)
     end
+    println("===========================")
     println("Sorted Array: ", array)
 end
 
